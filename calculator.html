@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>    
+        html {
+            box-sizing: border-box;
+            font-size: 10px;
+            color: #444444;
+        }  
+        * {
+            box-sizing: inherit;
+            padding: 0;
+            margin: 0;
+        }
+        .calculator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            width: 500px;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            padding: 20px 20px 10px 20px;
+            box-shadow: 1px 1px 4px 0px rgb(238, 238, 238);
+            margin: auto;
+
+            font-size: 2.8rem;
+        }
+        .input {
+            height: 72px;
+            border: 1px solid #ddd;
+            border-radius: 1px;
+            margin-bottom: 10px;
+            padding-right: 20px;
+
+            text-align: right;
+            line-height: 72px;
+            letter-spacing: 4px;
+
+
+            transition: all .2s ease-in-out;
+
+        }
+        .input:hover {
+            box-shadow: inset 0px 0.5px 4px 0px #ddd;
+        }
+
+        /* buttons-start */
+            .numbers div, .operators div {
+                display: inline-flex;
+                justify-content: space-around;
+                align-items: center;
+                
+                width: 100px;
+                height: 60px;
+                margin: 10px 0;
+                border: 1px solid #bbb;
+                border-radius: 1px;
+
+                cursor: pointer;
+                background-color: #f9f9f9;
+                transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
+            }
+
+            .operators {
+                display: flex;
+                justify-content: space-between;
+                height: 90px;
+            }
+            .operators div {
+                background-color: #ddd;
+            }
+
+            .operators div:hover {
+                background-color: rgba(221, 221, 221, 0.89);
+                box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+                border-color: #aaa;
+            }
+
+            .numbers div:hover {
+                background-color: rgb(235, 235, 235);
+                box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
+                border-color: #aaa;
+            }
+
+            .buttons {
+                display: flex;
+                justify-content: space-between;
+            }
+            .left{
+                flex: 3;
+            }
+            .numbers{
+                display: flex;
+                justify-content: space-between;
+                height: 88px;
+            }
+
+            .right{
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 100px;
+                border: 1px solid #3079ED;
+                border-radius: 1px;
+                text-align: center;
+                margin: 9px 0 18px 19px;
+
+                background-color: #4d90fe;
+                color:#f9f9f9;
+
+                cursor: pointer;
+                transition: background-color 0.2s ease-in-out, border-color .2s, box-shaddow .2s;
+            }
+            .right:hover {
+                background-color: #4d91fef1;
+                border-color: #0062ffe7;
+                box-shadow: 0 1px 4px 0px #444444;
+            }
+
+
+        /* buttons-end */
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="input"></div>
+        <div class="operators">
+            <div><span>+</span></div>
+            <div><span>−</span></div>
+            <div><span>×</span></div>
+            <div><span>÷</span></div>
+        </div>
+        <div class="buttons">
+            <div class="left">
+                <div class="numbers">
+                    <div><span>7</span></div>
+                    <div><span>8</span></div>
+                    <div><span>9</span></div>
+                </div>
+                <div class="numbers">
+                    <div><span>4</span></div>
+                    <div><span>5</span></div>
+                    <div><span>6</span></div>
+                </div>
+                <div class="numbers">
+                    <div><span>1</span></div>
+                    <div><span>2</span></div>
+                    <div><span>3</span></div>
+                </div>
+                <div class="numbers">
+                    <div><span>0</span></div>
+                    <div><span>.</span></div>
+                    <div class="clear-button"><span>C</span></div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="equal">=</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        "use strict"
+        const numbers = document.querySelectorAll('.numbers div'); // number buttons
+        const operators = document.querySelectorAll('.operators div'); // operator buttons
+        const result = document.querySelector('.right'); // equal button
+        let inputValue = document.querySelector('.input'); // input/output button
+        let resultDisplayed = false;
+        let clearInput = document.querySelector('.numbers .clear-button');
+
+        // add number into the input when clicking on number buttons
+        for(let i = 0; i < numbers.length - 1; i++) {
+            numbers[i].onclick = () => {
+                let currentString = inputValue.innerText;
+                let lastChar = currentString[currentString.length - 1]
+                if(resultDisplayed === false) {
+                    inputValue.innerText += numbers[i].innerText;
+                } else if(resultDisplayed === true && lastChar === "+" || lastChar === "-" ||
+                            lastChar === "×" || lastChar === "÷") {
+                                inputValue.innerText += numbers[i].innerText;
+                                resultDisplayed = false;
+                } else {    
+                    resultDisplayed = false;
+                    inputValue.innerText = "";
+                    inputValue.innerText += numbers[i].innerText;
+                }
+            };
+        }
+
+        // add operators into the input when clicking on oporatos button
+        for(let i = 0; i < operators.length; i++) {
+            operators[i].onclick = () => {
+                let currentString = inputValue.innerText;
+                let lastChar = currentString[currentString.length - 1]
+                if(lastChar === "+" || lastChar === "−" || lastChar === "×" || lastChar === "÷" ) {
+                    let newString = currentString.substring(0, currentString.length - 1) + operators[i].innerText;
+                    inputValue.innerText = newString;
+                } else if(inputValue.innerText === "") {
+                    // 
+                }
+                else {
+                    resultDisplayed = false;
+                    inputValue.innerText += operators[i].innerText;
+                }
+            }
+        }
+
+        // clear input when clicking on clear button
+        clearInput.onclick = () => {
+            inputValue.innerText = "";
+            resultDisplayed = false;
+        };
+
+        // calculate the input => clear current input => display the result
+        result.addEventListener("click", () => {
+            let inputString = inputValue.innerText;
+            let numbers = inputString.split(/\+|\−|\×|\÷/g);
+            let operators = inputString.replace(/[0-9]|\./g, "").split("");
+
+            let divide = operators.indexOf("÷");
+            while(divide != -1) {
+                numbers.splice(divide, 2, numbers[divide] / numbers[divide + 1]);
+                operators.splice(divide, 1);
+                divide = operators.indexOf('÷');
+            }
+
+            let multiply = operators.indexOf('×');
+            while(multiply != -1) {
+                numbers.splice(multiply, 2, numbers[multiply] * numbers[multiply + 1]);
+                operators.splice(multiply, 1);
+                multiply = operators.indexOf('×');
+            }
+
+            let substract = operators.indexOf('−');
+            while(substract != -1) {
+                numbers.splice(substract, 2, numbers[substract] - numbers[substract + 1]);
+                operators.splice(substract, 1);
+                substract = operators.indexOf('−');
+            }
+
+            let add = operators.indexOf('+');
+            while(add != -1) {
+                numbers.splice(add, 2, +numbers[add] + +numbers[add + 1]);
+                operators.splice(add, 1);
+                add = operators.indexOf('+');
+            }
+
+            inputValue.innerText = numbers[0];
+            resultDisplayed = true;
+        });
+        
+    </script>
+</body>
+</html>

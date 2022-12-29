@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hiệu ứng cho menu side bar phần 3</title>
+    <link rel="stylesheet" href="/fontawesome-free-6.2.1-web/css/all.css">
+    <style>
+        * {
+            box-sizing: inherit;
+            padding: 0;
+            margin: 0;
+        }
+        html {
+            box-sizing: border-box;
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .menu {
+            position: relative;
+            z-index: 5;
+            height: 100%;
+            width: 20%;
+            background-color: #37996b;
+            transform: translateX(-100%);
+            transition: .5s;
+        }
+        .show-menu {
+            transform: translateX(0);
+            transition: .5s;
+        }
+
+        .menu .icon {
+            display: flex;
+            justify-content: center;
+            font-size: 24px;
+            padding: 10px;
+        }
+
+        .menu .icon i {
+            position: relative;
+            right: 10px;
+        }
+
+        .menu .navigation ul{
+            color: #ffffffb8;
+            list-style-type: none;
+
+        }
+
+        .menu .navigation ul li {
+            padding: 10px;
+            border-top: 1px solid black;
+        }
+        .button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 2;
+            perspective: 1500px;
+            overflow: hidden;
+        }
+
+        .rotate-button {
+            transform-origin: top right;
+            transform: rotateY(-25deg);
+        }
+
+        .button button:hover {
+            transform: translate(0, 1px);
+            box-shadow: 0 0px 1px 0px rgb(56 56 56);
+            cursor: pointer;
+        }
+
+        .button button {
+            background-color: #057a44;
+            padding: 10px;
+            width: 100px;
+            height:40px;
+            border: none;
+            border-radius: 1px;
+            font-size: 16px;
+            color: white;
+            transition: 0.5s;
+        }
+
+        .black-screen {
+            position: absolute;
+            z-index: 3;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(97, 97, 97, 0.425);
+            visibility: hidden;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .show-black-screen {
+            visibility: visible;
+            opacity: 2;
+        }
+
+        .white-screen {
+            position: absolute;
+            z-index: 2;
+
+            height: 100%;
+            width: 100%;
+            
+            background-color: white;
+            transition: 0.5s;
+            
+        }
+        .scale-white-screen {
+            transition: 0.5s;
+            transform-origin: top right;
+            transform: rotateY(-25deg);
+        }
+
+        .white-screen-background {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgb(109, 109, 109);
+            perspective: 2000px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="black-screen"></div>
+    <div class="white-screen-background">
+        <div class="white-screen"></div>
+    </div>
+    <div class="menu">
+        <div class="icon">
+            <i class="fa-sharp fa-solid fa-bars"></i>Sidebar
+        </div>
+        <div class="navigation">
+            <ul>
+                <li>DATA MANAGEMENT</li>
+                <li>LOCATION</li>
+                <li>STUDY</li>
+                <li>COLEECTIONS</li>
+                <li>CREDITS</li>
+            </ul>
+        </div>
+    </div>
+    <div class="button">
+        <button>click</button>
+    </div>
+    <script>
+        const menu = document.querySelector('.menu'),
+              button = document.querySelector('.button'),
+              blackScreen = document.querySelector('.black-screen'),
+              whiteScreen = document.querySelector('.white-screen');
+        let clickBtn = button.getElementsByTagName('button');
+        button.onclick = () => {
+            menu.classList.add('show-menu');
+            blackScreen.classList.add('show-black-screen');
+            clickBtn[0].classList.add('rotate-button');
+            whiteScreen.classList.add('scale-white-screen');
+            
+        }
+        blackScreen.onclick = () => {
+            menu.classList.remove('show-menu');
+            blackScreen.classList.remove('show-black-screen');
+            clickBtn[0].classList.remove('rotate-button');
+            whiteScreen.classList.remove('scale-white-screen');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo hiệu ứng tương tác như facebook</title>
+    <style>
+        .top-bar {
+            height: 50px;
+            width: 100%;
+            background-color: rgb(156, 196, 248);
+            position: relative;
+        }
+
+        .top-bar__content {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            border: 1px solid black;
+            padding: 40px 20px;
+            box-shadow: 1px 1px 1px;
+            list-style-type: none;
+        }
+
+        .content-list {
+            padding: 5px 0;
+        }
+
+        .arrow {
+            border: solid black;
+            border-width: 0 5px 5px 0;
+            display: inline-block;
+            padding: 5px;
+            position: absolute;
+            right: 50px;
+            bottom: 20px;
+        }
+        .down {
+            transform: rotate(45deg);
+            }
+
+        .line {
+            border-bottom: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar__icon arrow down">
+
+        </div>
+        <ul class="top-bar__content" style="display: none;">
+            <li class="content-list line">Trang của bạn</li>
+            <li class="content-list line">Quản lý trang</li>
+            <li class="content-list line">Nhóm mới</li>
+            <li class="content-list line">Quảng cáo trên Facebook</li>
+            <li class="content-list">Nhật ký hoạt động</li>
+            <li class="content-list">Tùy chọn Bảng tin</li>
+            <li class="content-list">Cài đặt</li>
+            <li class="content-list">Đăng xuất</li>
+        </ul>
+    </div>
+    <script>
+        const topBarIcon = document.querySelector('.top-bar__icon');
+        const topBarContent = document.querySelector('.top-bar__content');
+        let contentDisplay = 'none';
+        topBarIcon.addEventListener('click', () => {
+            if(contentDisplay == 'none'){
+                topBarIcon.setAttribute('style','border-color: white');
+                topBarContent.setAttribute('style','display: block;');
+                contentDisplay = 'block';
+            } else if(contentDisplay == 'block'){
+                topBarIcon.setAttribute('style','border-color: black');
+                topBarContent.setAttribute('style','display: none;');
+                contentDisplay = 'none';
+            }
+        })
+    </script>
+</body>
+</html>

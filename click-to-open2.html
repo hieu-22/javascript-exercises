@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo hiệu ứng tương tác như facebook p.2</title>
+    <link rel="stylesheet" href="/fontawesome-free-6.2.1-web/css/all.css">
+    <style>
+        .top-bar {
+            display: flex;
+            flex-direction: row-reverse;
+            height: 50px;
+            width: 100%;
+            background-color: #9cc4f8;
+            position: relative;
+            box-sizing: border-box;
+            padding: 0 50px;
+        }
+
+        /* style top-bar content */
+        .top-bar__content {
+            position: absolute;
+            top: 35px;
+            border: 1px solid black;
+            padding: 40px 20px;
+            box-shadow: 1px 1px 1px;
+            list-style-type: none;
+            display: none;
+        }
+        #arrow {
+            right: 50px;
+        }
+        #question {
+            right: 85px;
+        }
+        #notification {
+            right: 130px;
+        }
+        #messenger {
+            right: 165px;
+        }
+        #user {
+            right: 205px;
+        }
+
+        .show {
+            display: block;
+        }
+        /* end */
+
+        .content-list {
+            padding: 5px 0;
+        }
+
+        .line {
+            border-bottom: 1px solid black;
+        }
+
+        .icon {
+            padding: 0 12px;
+            line-height: 50px;
+            transition: 0.4s;
+        }
+        .icon:hover {
+            cursor: pointer;
+        }
+        .white {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar__block">
+            <div class="icon" data-show="arrow">
+                <i class="fa-sharp fa-solid fa-caret-down"></i>
+            </div>
+            <ul class="top-bar__content" id="arrow">
+                <li class="content-list line">Trang của bạn</li>
+                <li class="content-list line">Quản lý trang</li>
+                <li class="content-list line">Nhóm mới</li>
+                <li class="content-list line">Quảng cáo trên Facebook</li>
+                <li class="content-list">Nhật ký hoạt động</li>
+                <li class="content-list">Tùy chọn Bảng tin</li>
+                <li class="content-list">Cài đặt</li>
+                <li class="content-list">Đăng xuất</li>
+            </ul>
+        </div>
+        <!--end of block-->
+        <div class="top-bar__block">
+            <div class="icon" data-show="question">
+                <i class="fa-solid fa-circle-question"></i>
+            </div>
+            <ul class="top-bar__content" id="question">
+                <li class="content-list line">Trang của bạn</li>
+                <li class="content-list line">Quản lý trang</li>
+                <li class="content-list line">Nhóm mới</li>
+                <li class="content-list line">Quảng cáo trên Facebook</li>
+                <li class="content-list">Nhật ký hoạt động</li>
+                <li class="content-list">Tùy chọn Bảng tin</li>
+                <li class="content-list">Cài đặt</li>
+                <li class="content-list">Đăng xuất</li>
+            </ul>
+        </div>
+        <!--end of content-->
+        <div class="top-bar__block">
+            <div class="icon" data-show="notification">
+                <i class="fa-solid fa-bell"></i>
+            </div>
+            <ul class="top-bar__content" id="notification">
+                <li class="content-list line">Trang của bạn</li>
+                <li class="content-list line">Quản lý trang</li>
+                <li class="content-list line">Nhóm mới</li>
+                <li class="content-list line">Quảng cáo trên Facebook</li>
+            </ul>
+        </div>
+        <!--end of content-->
+        <div class="top-bar__block">
+            <div class="icon" data-show="messenger">
+                <i class="fa-brands fa-facebook-messenger"></i>
+            </div>
+            <ul class="top-bar__content" id="messenger">
+                <li class="content-list line">Trang của bạn</li>
+                <li class="content-list line">Quản lý trang</li>
+                <li class="content-list line">Nhóm mới</li>
+            </ul>
+        </div>
+        <!--end of content-->
+        <div class="top-bar__block">
+            <div class="icon" data-show="user">
+                <i class="fa-solid fa-user"></i>
+            </div>
+            <ul class="top-bar__content" id="user">
+                <li class="content-list line">Trang của bạn</li>
+                <li class="content-list line">Quản lý trang</li>
+                <li class="content-list line">Nhóm mới</li>
+                <li class="content-list line">Quảng cáo trên Facebook</li>
+                <li class="content-list">Nhật ký hoạt động</li>
+                <li class="content-list">Tùy chọn Bảng tin</li>
+                <li class="content-list">Cài đặt</li>
+                <li class="content-list">Đăng xuất</li>
+            </ul>
+        </div>
+        <!--end of content-->
+    </div>
+    <script>
+        const icons = document.querySelectorAll('.icon');
+        const content = document.querySelectorAll('.top-bar__content');
+        for(let i = 0; i < icons.length; i++) {
+            icons[i].onclick = () => {
+                if(icons[i].classList[icons[i].classList.length - 1] == 'white') {
+                    icons[i].classList.remove('white');
+                    content[i].classList.remove('show');
+                } else {
+                    for(let k = 0; k < icons.length; k++) {
+                        icons[k].classList.remove('white');
+                        content[k].classList.remove('show');
+                    }
+                    // quote: to close all showing content and white icons
+
+                    icons[i].classList.add('white');
+                    content[i].classList.add('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

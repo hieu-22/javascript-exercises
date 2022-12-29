@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ĐỒNG HỒ BẤM GIỜ</title>
+    <style>
+        html {
+            background-color: rgb(121, 121, 255);
+            color: white;
+        }
+        body {
+            position: relative;
+            top: 100px;
+        }
+        div {
+            font-size: 32px;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .btn {
+            display: flex;
+            justify-content: center;
+        }
+        button {
+            width: 100px;
+            height: 50px;
+            font-size: 24px;
+            margin: 0 10px;
+            border: 1px solid white;
+            border-radius: 5px;
+            background-color: rgb(121, 121, 255);
+            transition: 500ms;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div>Stopwatch</div>
+        <div>Blue Javascript Stopwatch</div>
+        <div class="timer"><span class="seconds">00</span>:<span class="tens">00</span></div>
+        <div class="btn">
+            <button class="btn-start">Start</button>
+            <button class="btn-stop">Stop</button>
+            <button class="btn-reset">Reset</button>
+        </div>
+    </div>
+    <script>
+        let secondCounter = "00";
+        let tenCounter = "00";
+        const seconds = document.querySelector('.seconds')
+        const tens = document.querySelector('.tens')
+        const btnStart = document.querySelector('.btn-start');
+        const btnStop = document.querySelector('.btn-stop');
+        const btnReset = document.querySelector('.btn-reset');
+        let Interval;
+        function startTimer() {
+            tenCounter++;
+
+            if(tenCounter <= 9) {
+                tens.innerText = "0" + tenCounter;
+            }
+            
+            if( tenCounter > 9 && tenCounter < 99) {
+                tens.innerText = tenCounter;
+            }
+            
+            if(tenCounter == 99) {
+                secondCounter++
+
+                if(secondCounter <= 9) {
+                    seconds.innerText = "0" + secondCounter;
+                }
+                
+                if(secondCounter > 9) {
+                    seconds.innerText = secondCounter;
+                }
+
+                tenCounter = "00"
+                tens.innerText = tenCounter;
+            }
+        }
+
+        btnStart.onclick = () => {
+            clearInterval(Interval);
+            Interval = setInterval(startTimer, 10);
+        }
+
+        btnStop.onclick = () => {
+            clearInterval(Interval);
+        }
+
+        btnReset.onclick = () => {
+            clearInterval(Interval);
+            tenCounter = "00";
+            tens.innerText = tenCounter;
+            secondCounter = "00";
+            seconds.innerText = secondCounter;
+        }
+
+    </script>
+</body>
+</html>
