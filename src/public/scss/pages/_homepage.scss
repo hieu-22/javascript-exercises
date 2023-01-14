@@ -1,0 +1,50 @@
+@use '../utils' as u;
+
+.banner {
+    background-color: u.$primiryColor;
+    color: white;
+}
+
+table {
+    max-width: 100%;
+}
+
+.createUserBotton {
+    margin-top: 20px;
+}
+
+.createUser-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: none;
+    background-color: hsla(0, 0%, 0%, 0.2);
+    z-index: 1;
+}
+
+.createUserWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+
+    display: none;
+    flex-direction: column ;
+    justify-content: center;
+
+    width: 1000px;
+    height: 400px;
+    padding: 0 100px;
+
+    align-items: center;
+    background-color: rgb(243, 243, 243);
+}
+
+.show {
+    opacity: 1;
+    visibility: visible;
+}

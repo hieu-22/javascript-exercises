@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move box with animation & transform</title>
+    <style>
+        .box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            width: 400px;
+            border: 2px solid rgb(85, 85, 255);
+            font-size: 30px;
+        }
+
+        button {
+            margin-bottom: 10px;
+        }
+
+        .move-forwards {
+            animation: move-forwards 2s forwards;
+        }
+        .move-backwards {
+            animation: move-backwards 2s forwards;
+        }
+
+        @keyframes move-forwards {
+            0%{transform: translateX(0);margin-top: 0;}
+            30%{transform: translateX(50%);margin-top: 0;}
+            60%{transform: translateX(50%);margin-top:200px;}
+            100%{transform: translateX(100%);margin-top: 200px;}
+        }
+        @keyframes move-backwards {
+            100%{transform: translateX(0);margin-top: 0;}
+            60%{transform: translateX(50%);margin-top: 0;}
+            30%{transform: translateX(50%);margin-top:200px;}
+            0%{transform: translateX(100%);margin-top: 200px;}
+        }
+    </style>
+</head>
+<body>
+    <h1>Click to move box</h1>
+    <button class="btn">Click here</button>
+    <div class="box">
+        Move me
+    </div>
+    <script>
+            const box = document.querySelector('.box');
+            const btn = document.querySelector('.btn');
+            let boxStatus ="start";
+            btn.onclick = () => {
+                if(boxStatus == "start") {
+                    box.classList.remove('move-backwards');
+                    box.classList.add('move-forwards');
+                    boxStatus = "end";
+                } else if (boxStatus == "end") {
+                    box.classList.remove('move-forwards');
+                    box.classList.add('move-backwards');
+                    boxStatus = "start";
+                }
+            }
+    </script>
+</body>
+</html>

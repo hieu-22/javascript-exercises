@@ -1,0 +1,109 @@
+.table {
+  display: table;
+  border-collapse: collapse;
+}
+.table th, .table td {
+  border: 2px solid hsl(201deg, 95%, 66%);
+  padding: 10px 20px;
+}
+.table th {
+  background-color: hsl(201deg, 89%, 81%);
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: hsl(201deg, 95%, 66%);
+  color: white;
+  font-weight: bold;
+  border-radius: 2px;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0 1px hsl(201deg, 89%, 81%);
+  background-color: hsl(201deg, 89%, 81%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 200px 1fr;
+  gap: 20px;
+}
+.grid .grid__item1 {
+  grid-row: 1/2;
+}
+.grid .grid__item2 {
+  grid-row: 2/3;
+}
+.grid .grid__item3 {
+  grid-row: 3/4;
+}
+.grid .grid__item4 {
+  grid-row: 4/5;
+}
+
+.flex {
+  display: flex;
+}
+.flex__center {
+  justify-content: center;
+  align-items: center;
+}
+.flex__left {
+  justify-content: flex-end;
+  align-items: center;
+}
+.flex__columnDirect {
+  flex-flow: column;
+}
+.flex__columnDirect--left {
+  align-items: flex-start;
+}
+
+.banner {
+  background-color: hsl(201deg, 95%, 66%);
+  color: white;
+}
+
+table {
+  max-width: 100%;
+}
+
+.createUserBotton {
+  margin-top: 20px;
+}
+
+.createUser-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-color: hsla(0deg, 0%, 0%, 0.2);
+  z-index: 1;
+}
+
+.createUserWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 1000px;
+  height: 400px;
+  padding: 0 100px;
+  align-items: center;
+  background-color: rgb(243, 243, 243);
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/homepage.js" defer></script>
+</head>
+<body>
+    <div class="main grid">
+        <div class="grid_item1 banner">
+            <ul class="webPages">
+                <li class="webPages__item"><a href="">Page: </a></li>
+                <li class="webPages__item"><a href="">Page: </a></li>
+                <li class="webPages__item"><a href="">Page: </a></li>
+            </ul>
+        </div>
+        <div class="grid_item2 flex flex__columnDirect flex__columnDirect--left  ">
+            <table class="table">
+                <thead>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>ID</th>
+                    <th>Email</th>
+                </thead>
+                <tbody>
+                    <% for (let i = 0; i < data.length ; i++)  { %> 
+                        <tr>
+                            <td>
+                                <%=data[i].firstName%>  <%=data[i].middleName%> <%=data[i].lastName%>
+                            </td>
+                            <td>
+                                <%=data[i].age%>
+                            </td>
+                            <td>
+                                <%=data[i].gender%>
+                            </td>
+                            <td>
+                                <%=data[i].ID%>
+                            </td>
+                            <td>
+                                <%=data[i].email%>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <button class="createUserBotton">
+                Create User
+            </button>
+            <div class="createUser-background"></div>
+            <div class="createUserWrapper">
+                <form action="/create-user" method="post">
+                    <table class="table">
+                        <thead>
+                            <th>Full Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th hidden></th>
+                        </thead>
+                        <tbody>
+                            <td><input class="tdataInput" type="text" name="fullName"></td>
+                            <td><input class="tdataInput" type="text" name="age"></td>
+                            <td><input class="tdataInput" type="text" name="gender"></td>
+                            <td><input class="tdataInput" type="text" name="id"></td>
+                            <td><input class="tdataInput" type="text" name="email"></td>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="createUserBotton">Create User</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

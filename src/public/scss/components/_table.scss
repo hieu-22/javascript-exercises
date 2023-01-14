@@ -1,0 +1,16 @@
+@use "../utils";
+
+.table {
+    display: table;
+    border-collapse: collapse;
+
+    th, td {
+        border: 2px solid utils.$primiryColor;
+        padding: 10px 20px;
+    }
+
+    th {
+        background-color: utils.$secondColor;
+        color: white;
+    }
+}
